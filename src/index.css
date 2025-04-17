@@ -108,7 +108,56 @@
   }
 
   section {
-    @apply py-16 md:py-24;
+    @apply py-16 md:py-24 relative overflow-hidden;
+  }
+  
+  /* Add dual-tone animation classes */
+  .dual-tone-bg {
+    @apply relative;
+  }
+  
+  .dual-tone-bg::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary/5 to-background/0 dark:from-primary/10 dark:to-background/0 opacity-30 transition-colors duration-500 pointer-events-none;
+  }
+  
+  /* Gradient text animation */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent relative;
+  }
+  
+  .gradient-text::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary/70 to-primary bg-clip-text text-transparent opacity-0;
+    animation: textShift 8s ease-in-out infinite alternate;
+  }
+  
+  /* Animated underline */
+  .animated-underline {
+    @apply relative;
+  }
+  
+  .animated-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary/80 to-primary transition-all duration-300;
+  }
+  
+  .animated-underline:hover::after {
+    @apply w-full;
+  }
+  
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg relative overflow-hidden;
+  }
+  
+  .card-hover::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300;
+  }
+  
+  .card-hover:hover::before {
+    @apply opacity-100;
   }
 }
 
@@ -116,4 +165,48 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+@keyframes textShift {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.3;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Custom animations */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-flow {
+  background-size: 200% 200%;
+  animation: gradientFlow 15s ease infinite;
+}
+
+.border-gradient {
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(to right, hsl(var(--primary)/20%), transparent) 1;
+  transition: border-image 0.3s ease;
+}
+
+.border-gradient:hover {
+  border-image: linear-gradient(to right, hsl(var(--primary)/50%), hsl(var(--primary)/20%)) 1;
 }
