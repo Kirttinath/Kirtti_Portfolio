@@ -29,14 +29,14 @@ export default function Hero() {
     
     // Line nodes
     const nodes: {x: number, y: number, vx: number, vy: number}[] = [];
-    const nodeCount = Math.min(window.innerWidth / 40, 40); // Responsive node count
+    const nodeCount = Math.min(window.innerWidth / 30, 50); // Increased node count and density
     
     for (let i = 0; i < nodeCount; i++) {
       nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * 0.7, // Slightly faster movement
+        vy: (Math.random() - 0.5) * 0.7,
       });
     }
     
@@ -57,11 +57,12 @@ export default function Hero() {
       });
       
       // Draw connections
-      ctx.beginPath();
-      ctx.strokeStyle = getComputedStyle(document.documentElement)
+      const primaryColor = getComputedStyle(document.documentElement)
         .getPropertyValue('--primary')
         .trim();
-      ctx.globalAlpha = 0.05; // Very faint lines
+      
+      ctx.strokeStyle = primaryColor || '#000000'; // Fallback color if CSS var not available
+      ctx.globalAlpha = 0.12; // Increased visibility
       
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
@@ -70,9 +71,9 @@ export default function Hero() {
           const distance = Math.sqrt(dx * dx + dy * dy);
           
           // Only connect if close enough
-          const maxDistance = canvas.width * 0.15;
+          const maxDistance = canvas.width * 0.2; // Increased connection distance
           if (distance < maxDistance) {
-            ctx.lineWidth = 1 - distance / maxDistance;
+            ctx.lineWidth = 1.5 - distance / maxDistance; // Thicker lines
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -93,7 +94,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 dual-tone-bg gradient-flow">
+    <section id="home" className="relative min-h-screen flex items-center pt-20 dual-tone-bg gradient-flow overflow-hidden">
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 w-full h-full pointer-events-none z-0"
