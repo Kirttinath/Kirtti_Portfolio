@@ -2,10 +2,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
   
   useEffect(() => {
     setIsVisible(true);
@@ -56,14 +58,10 @@ export default function Hero() {
         if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
       });
       
-      // Draw connections
-      const primaryColor = getComputedStyle(document.documentElement)
-        .getPropertyValue('--primary')
-        .trim();
+      // Create gradient for the lines - will be visible in both light and dark modes
+      const isLightMode = theme === 'light';
       
-      ctx.strokeStyle = primaryColor || '#000000'; // Fallback color if CSS var not available
-      ctx.globalAlpha = 0.12; // Increased visibility
-      
+      // Draw connections with gradient colors
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
@@ -73,7 +71,26 @@ export default function Hero() {
           // Only connect if close enough
           const maxDistance = canvas.width * 0.2; // Increased connection distance
           if (distance < maxDistance) {
+            // Create gradient for this specific line
+            const gradient = ctx.createLinearGradient(
+              nodes[i].x, 
+              nodes[i].y, 
+              nodes[j].x, 
+              nodes[j].y
+            );
+            
+            // Set gradient colors based on theme
+            if (isLightMode) {
+              gradient.addColorStop(0, 'rgba(34, 51, 68, 0.6)'); // Dark blue
+              gradient.addColorStop(1, 'rgba(87, 111, 230, 0.6)'); // Lighter purple-blue
+            } else {
+              gradient.addColorStop(0, 'rgba(131, 177, 255, 0.6)'); // Light blue
+              gradient.addColorStop(1, 'rgba(208, 178, 255, 0.6)'); // Light purple
+            }
+            
+            ctx.strokeStyle = gradient;
             ctx.lineWidth = 1.5 - distance / maxDistance; // Thicker lines
+            ctx.globalAlpha = 0.25; // Increased visibility
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -91,7 +108,7 @@ export default function Hero() {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [theme]); // Added theme as dependency to update when theme changes
 
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20 dual-tone-bg gradient-flow overflow-hidden">
