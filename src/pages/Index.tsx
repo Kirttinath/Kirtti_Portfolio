@@ -19,21 +19,21 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>John Doe | Full Stack Developer & UX Designer</title>
-        <meta name="description" content="Portfolio of John Doe, a Full Stack Developer and UX Designer specializing in creating modern web applications." />
-        <meta name="keywords" content="frontend developer, full stack developer, ux designer, web development, portfolio" />
+        <title>Kirttinath Ojha | Frontend Developer and UI/UX Designer</title>
+        <meta name="description" content="Portfolio of Kirttinath Ojha, a Frontend Developer and UI/UX Designer specializing in creating modern web applications." />
+        <meta name="keywords" content="frontend developer, ui designer, ux designer, web development, portfolio" />
         
         {/* Open Graph tags */}
-        <meta property="og:title" content="John Doe | Full Stack Developer & UX Designer" />
-        <meta property="og:description" content="Portfolio of John Doe, a Full Stack Developer and UX Designer specializing in creating modern web applications." />
+        <meta property="og:title" content="Kirttinath Ojha | Frontend Developer and UI/UX Designer" />
+        <meta property="og:description" content="Portfolio of Kirttinath Ojha, a Frontend Developer and UI/UX Designer specializing in creating modern web applications." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://johndoe.dev" />
+        <meta property="og:url" content="https://kirttinathojha.dev" />
         <meta property="og:image" content="https://example.com/portfolio-preview.jpg" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="John Doe | Full Stack Developer & UX Designer" />
-        <meta name="twitter:description" content="Portfolio of John Doe, a Full Stack Developer and UX Designer specializing in creating modern web applications." />
+        <meta name="twitter:title" content="Kirttinath Ojha | Frontend Developer and UI/UX Designer" />
+        <meta name="twitter:description" content="Portfolio of Kirttinath Ojha, a Frontend Developer and UI/UX Designer specializing in creating modern web applications." />
         <meta name="twitter:image" content="https://example.com/portfolio-preview.jpg" />
       </Helmet>
 

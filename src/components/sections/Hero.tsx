@@ -58,10 +58,10 @@ export default function Hero() {
         if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
       });
       
-      // Create gradient for the lines - will be visible in both light and dark modes
+      // Create gradient for the lines - enhanced visibility for both modes
       const isLightMode = theme === 'light';
       
-      // Draw connections with gradient colors
+      // Draw connections with stronger gradient colors
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
@@ -79,18 +79,18 @@ export default function Hero() {
               nodes[j].y
             );
             
-            // Set gradient colors based on theme
+            // Set gradient colors based on theme with stronger visibility
             if (isLightMode) {
-              gradient.addColorStop(0, 'rgba(34, 51, 68, 0.6)'); // Dark blue
-              gradient.addColorStop(1, 'rgba(87, 111, 230, 0.6)'); // Lighter purple-blue
+              gradient.addColorStop(0, 'rgba(34, 51, 68, 0.9)'); // Dark blue (more opaque)
+              gradient.addColorStop(1, 'rgba(87, 111, 230, 0.9)'); // Lighter purple-blue (more opaque)
             } else {
-              gradient.addColorStop(0, 'rgba(131, 177, 255, 0.6)'); // Light blue
-              gradient.addColorStop(1, 'rgba(208, 178, 255, 0.6)'); // Light purple
+              gradient.addColorStop(0, 'rgba(131, 177, 255, 0.9)'); // Light blue (more opaque)
+              gradient.addColorStop(1, 'rgba(208, 178, 255, 0.9)'); // Light purple (more opaque)
             }
             
             ctx.strokeStyle = gradient;
-            ctx.lineWidth = 1.5 - distance / maxDistance; // Thicker lines
-            ctx.globalAlpha = 0.25; // Increased visibility
+            ctx.lineWidth = Math.max(2 - distance / maxDistance, 0.8); // Thicker lines with minimum thickness
+            ctx.globalAlpha = 0.35; // Increased visibility further
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -127,14 +127,14 @@ export default function Hero() {
               Hello, I'm
             </span>
             <span className="gradient-text">
-              John Doe
+              Kirttinath Ojha
             </span>
           </h1>
           
           <p 
             className={`text-xl md:text-2xl text-muted-foreground opacity-0 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : ''}`}
           >
-            Full Stack Developer & UX Designer
+            Frontend Developer and UI/UX Designer
           </p>
           
           <p 
