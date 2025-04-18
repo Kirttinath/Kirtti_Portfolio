@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Code, Database, Layout, Palette, Server, Wrench } from "lucide-react";
@@ -14,32 +13,27 @@ const skillsData: SkillCategory[] = [
   {
     name: "Frontend",
     icon: <Layout className="h-6 w-6" />,
-    skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Vue.js", "Tailwind CSS", "Material UI", "Redux"]
-  },
-  {
-    name: "Backend",
-    icon: <Server className="h-6 w-6" />,
-    skills: ["Node.js", "Express", "Python", "Django", "Ruby on Rails", "Java", "Spring Boot", "RESTful APIs", "GraphQL"]
+    skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Vue.js", "Bootstrap", "Material UI", "Redux"]
   },
   {
     name: "Database",
     icon: <Database className="h-6 w-6" />,
-    skills: ["MongoDB", "PostgreSQL", "MySQL", "Firebase", "Redis", "Prisma", "Sequelize", "SQL", "NoSQL"]
+    skills: ["Firebase", "MySQL", "SQL"]
   },
   {
     name: "Design",
     icon: <Palette className="h-6 w-6" />,
-    skills: ["Figma", "Adobe XD", "Sketch", "Photoshop", "Illustrator", "UI/UX Design", "Responsive Design", "Wireframing", "Prototyping"]
+    skills: ["Figma", "UI/UX Design", "Responsive Design", "Wireframing", "Prototyping"]
   },
   {
     name: "DevOps",
     icon: <Wrench className="h-6 w-6" />,
-    skills: ["Git", "GitHub", "GitLab", "CI/CD", "Docker", "Kubernetes", "AWS", "Heroku", "Vercel", "Netlify"]
+    skills: ["Git", "GitHub", "CI/CD", "Vercel", "Netlify"]
   },
   {
     name: "Languages",
     icon: <Code className="h-6 w-6" />,
-    skills: ["JavaScript", "TypeScript", "Python", "Java", "Ruby", "C#", "PHP", "Go", "Swift", "Kotlin"]
+    skills: ["JavaScript", "TypeScript", "Java"]
   }
 ];
 
