@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -67,9 +66,7 @@
     --input: 217 33% 17%;
     --ring: 213 27% 84%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -111,7 +108,6 @@
     @apply py-16 md:py-24 relative overflow-hidden;
   }
   
-  /* Add dual-tone animation classes */
   .dual-tone-bg {
     @apply relative;
   }
@@ -121,7 +117,6 @@
     @apply absolute inset-0 bg-gradient-to-r from-primary/5 to-background/0 dark:from-primary/10 dark:to-background/0 opacity-30 transition-colors duration-500 pointer-events-none;
   }
   
-  /* Gradient text animation */
   .gradient-text {
     @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent relative;
   }
@@ -132,7 +127,6 @@
     animation: textShift 8s ease-in-out infinite alternate;
   }
   
-  /* Animated underline */
   .animated-underline {
     @apply relative;
   }
@@ -146,7 +140,6 @@
     @apply w-full;
   }
   
-  /* Card hover effect */
   .card-hover {
     @apply transition-all duration-300 hover:shadow-lg relative overflow-hidden;
   }
@@ -158,6 +151,37 @@
   
   .card-hover:hover::before {
     @apply opacity-100;
+  }
+
+  .border-gradient-primary {
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(to right, hsl(var(--primary)/20%), hsl(var(--primary)/10%)) 1;
+    transition: all 0.3s ease;
+  }
+
+  .border-gradient-primary:hover {
+    border-image: linear-gradient(to right, hsl(var(--primary)/40%), hsl(var(--primary)/20%)) 1;
+    transform: translateY(-1px);
+  }
+
+  section#contact {
+    min-height: calc(100vh - 5rem);
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .gradient-bg-primary {
+    @apply bg-gradient-to-br from-[#9b87f5] via-[#7E69AB] to-[#6E59A5];
+  }
+
+  .gradient-bg-secondary {
+    @apply bg-gradient-to-br from-[#D6BCFA] via-[#E5DEFF] to-[#D3E4FD];
+  }
+
+  .card-gradient {
+    @apply bg-gradient-to-br from-background via-muted/50 to-muted/30 backdrop-blur-sm;
   }
 }
 
@@ -182,7 +206,6 @@
   }
 }
 
-/* Custom animations */
 @keyframes gradientFlow {
   0% {
     background-position: 0% 50%;

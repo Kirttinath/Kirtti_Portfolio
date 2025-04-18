@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
@@ -20,7 +19,6 @@ export default function Hero() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
-    // Set canvas to full screen
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -29,49 +27,39 @@ export default function Hero() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     
-    // Line nodes
     const nodes: {x: number, y: number, vx: number, vy: number}[] = [];
-    const nodeCount = Math.min(window.innerWidth / 30, 50); // Increased node count and density
+    const nodeCount = Math.min(window.innerWidth / 30, 50);
     
     for (let i = 0; i < nodeCount; i++) {
       nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.7, // Slightly faster movement
+        vx: (Math.random() - 0.5) * 0.7,
         vy: (Math.random() - 0.5) * 0.7,
       });
     }
     
-    // Animation
     let animationFrameId: number;
     
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Update nodes
       nodes.forEach(node => {
         node.x += node.vx;
         node.y += node.vy;
         
-        // Bounce off edges
         if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
         if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
       });
       
-      // Create gradient for the lines - enhanced visibility for both modes
-      const isLightMode = theme === 'light';
-      
-      // Draw connections with stronger gradient colors
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          // Only connect if close enough
-          const maxDistance = canvas.width * 0.2; // Increased connection distance
+          const maxDistance = canvas.width * 0.2;
           if (distance < maxDistance) {
-            // Create gradient for this specific line
             const gradient = ctx.createLinearGradient(
               nodes[i].x, 
               nodes[i].y, 
@@ -79,18 +67,17 @@ export default function Hero() {
               nodes[j].y
             );
             
-            // Set gradient colors based on theme with stronger visibility
-            if (isLightMode) {
-              gradient.addColorStop(0, 'rgba(34, 51, 68, 0.9)'); // Dark blue (more opaque)
-              gradient.addColorStop(1, 'rgba(87, 111, 230, 0.9)'); // Lighter purple-blue (more opaque)
+            if (theme === 'light') {
+              gradient.addColorStop(0, 'rgba(155, 135, 245, 0.15)');
+              gradient.addColorStop(1, 'rgba(211, 228, 253, 0.15)');
             } else {
-              gradient.addColorStop(0, 'rgba(131, 177, 255, 0.9)'); // Light blue (more opaque)
-              gradient.addColorStop(1, 'rgba(208, 178, 255, 0.9)'); // Light purple (more opaque)
+              gradient.addColorStop(0, 'rgba(214, 188, 250, 0.15)');
+              gradient.addColorStop(1, 'rgba(229, 222, 255, 0.15)');
             }
             
             ctx.strokeStyle = gradient;
-            ctx.lineWidth = Math.max(2 - distance / maxDistance, 0.8); // Thicker lines with minimum thickness
-            ctx.globalAlpha = 0.35; // Increased visibility further
+            ctx.lineWidth = Math.max(1.5 - distance / maxDistance, 0.5);
+            ctx.globalAlpha = 0.15;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -108,10 +95,10 @@ export default function Hero() {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [theme]); // Added theme as dependency to update when theme changes
-
+  }, [theme]);
+  
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 dual-tone-bg gradient-flow overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90">
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 w-full h-full pointer-events-none z-0"
@@ -149,12 +136,15 @@ export default function Hero() {
           >
             <Button asChild size="lg" className="rounded-full relative overflow-hidden group">
               <a href="#contact">
-                <span className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-primary/80 via-[#9b87f5] to-[#7E69AB] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                 <span className="relative z-10">Get In Touch</span>
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full border-gradient card-hover">
-              <a href="#projects">View My Work</a>
+            <Button asChild variant="outline" size="lg" className="rounded-l-none rounded-r-full border-gradient-primary group transition-all duration-300">
+              <a href="#projects" className="relative overflow-hidden">
+                <span className="absolute inset-0 bg-gradient-to-r from-[#D6BCFA]/10 to-[#D3E4FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                <span className="relative z-10">View My Work</span>
+              </a>
             </Button>
           </div>
         </div>
