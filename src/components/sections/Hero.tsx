@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
@@ -68,16 +69,16 @@ export default function Hero() {
             );
             
             if (theme === 'light') {
-              gradient.addColorStop(0, 'rgba(155, 135, 245, 0.15)');
-              gradient.addColorStop(1, 'rgba(211, 228, 253, 0.15)');
+              gradient.addColorStop(0, 'rgba(155, 135, 245, 0.5)');
+              gradient.addColorStop(1, 'rgba(211, 228, 253, 0.5)');
             } else {
-              gradient.addColorStop(0, 'rgba(214, 188, 250, 0.15)');
-              gradient.addColorStop(1, 'rgba(229, 222, 255, 0.15)');
+              gradient.addColorStop(0, 'rgba(214, 188, 250, 0.5)');
+              gradient.addColorStop(1, 'rgba(229, 222, 255, 0.5)');
             }
             
             ctx.strokeStyle = gradient;
             ctx.lineWidth = Math.max(1.5 - distance / maxDistance, 0.5);
-            ctx.globalAlpha = 0.15;
+            ctx.globalAlpha = 0.5;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -158,3 +159,4 @@ export default function Hero() {
     </section>
   );
 }
+
