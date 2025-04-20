@@ -1,5 +1,5 @@
 
-import { Button } from "@/components/ui/button";
+import { Button } from "react-bootstrap";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
@@ -102,6 +102,7 @@ export default function Hero() {
   return (
     <section 
       id="home" 
+      className="container-fluid"
       style={{
         minHeight: '100vh',
         display: 'flex',
@@ -111,7 +112,6 @@ export default function Hero() {
         overflow: 'hidden',
         background: 'linear-gradient(to bottom right, rgba(255,255,255,0.95), rgba(255,255,255,0.9))'
       }}
-      className="container-fluid"
     >
       <canvas 
         ref={canvasRef} 
