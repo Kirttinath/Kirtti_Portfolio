@@ -4,8 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useState, FormEvent } from "react";
-import { AtSign, MapPin, Send, Phone } from "lucide-react";
-import { GitHub, Linkedin } from "lucide-react";
+import { AtSign, MapPin, Send } from "lucide-react";
+import { github, linkedin } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
 
@@ -247,7 +247,7 @@ export default function Contact() {
                       className="h-12 w-12 bg-card rounded-full border flex items-center justify-center transition-colors hover:bg-muted"
                       aria-label="GitHub"
                     >
-                      <GitHub className="h-5 w-5" />
+                      <github className="h-5 w-5" />
                     </a>
                     <a 
                       href="https://linkedin.com/in/kirttinathojha" 
@@ -256,7 +256,7 @@ export default function Contact() {
                       className="h-12 w-12 bg-card rounded-full border flex items-center justify-center transition-colors hover:bg-muted"
                       aria-label="LinkedIn"
                     >
-                      <Linkedin className="h-5 w-5" />
+                      <linkedin className="h-5 w-5" />
                     </a>
                   </div>
                 </CardContent>
