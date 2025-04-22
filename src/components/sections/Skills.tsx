@@ -1,29 +1,37 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import {
-    Code,
-    Database,
-    Layout,
-    Palette,
-    Wrench,
-    FileJson,
-    FileType2,
-    Globe,
-    Columns,
-    GanttChart,
-    Layers,
-    LayoutGrid,
-    MessageSquare,
-    Brush,
-    Boxes,
-    ServerCog,
-    GitBranch,
-    Github,
-    Rocket,
-    Network,
-    Coffee,
-} from "lucide-react";
+import { Layout, Palette, Wrench, Code, Database } from "lucide-react";
 import { useInView } from "react-intersection-observer";
+import {
+    // Frontend
+    SiHtml5,
+    SiCss3,
+    SiJavascript,
+    SiTypescript,
+    SiReact,
+    SiNextdotjs,
+    SiVuedotjs,
+    SiBootstrap,
+    SiRedux,
+
+    // Database
+    SiFirebase,
+    SiMysql,
+
+    // Design
+    SiFigma,
+
+    // DevOps
+    SiGit,
+    SiGithub,
+    SiVercel,
+    SiNetlify,
+
+    // Languages
+    // Java is not in simple-icons, we'll use a different package
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa"; // For Java icon
+import { SiMaterialdesign } from "react-icons/si"; // Alternative for Material UI
 
 interface SkillCategory {
     name: string;
@@ -34,47 +42,50 @@ interface SkillCategory {
     }[];
 }
 
-// Map each skill to its corresponding icon
+// Map each skill to its corresponding official icon
 const getSkillIcon = (skill: string) => {
     const iconMap: Record<string, React.ReactNode> = {
         // Frontend
-        HTML5: <FileType2 className="h-4 w-4 text-orange-500" />,
-        CSS3: <Brush className="h-4 w-4 text-blue-500" />,
-        JavaScript: <FileJson className="h-4 w-4 text-yellow-500" />,
-        TypeScript: <FileJson className="h-4 w-4 text-blue-600" />,
-        React: <Layers className="h-4 w-4 text-blue-400" />,
-        "Next.js": <Layout className="h-4 w-4 text-black" />,
-        "Vue.js": <Layers className="h-4 w-4 text-green-500" />,
-        Bootstrap: <Columns className="h-4 w-4 text-purple-500" />,
-        "Material UI": <LayoutGrid className="h-4 w-4 text-blue-500" />,
-        Redux: <Boxes className="h-4 w-4 text-purple-600" />,
+        HTML5: <SiHtml5 className="h-4 w-4 text-orange-500" />,
+        CSS3: <SiCss3 className="h-4 w-4 text-blue-500" />,
+        JavaScript: <SiJavascript className="h-4 w-4 text-yellow-500" />,
+        TypeScript: <SiTypescript className="h-4 w-4 text-blue-600" />,
+        React: <SiReact className="h-4 w-4 text-blue-400" />,
+        "Next.js": (
+            <SiNextdotjs className="h-4 w-4 text-black dark:text-white" />
+        ),
+        "Vue.js": <SiVuedotjs className="h-4 w-4 text-green-500" />,
+        Bootstrap: <SiBootstrap className="h-4 w-4 text-purple-500" />,
+        "Material UI": <SiMaterialdesign className="h-4 w-4 text-blue-500" />,
+        Redux: <SiRedux className="h-4 w-4 text-purple-600" />,
 
         // Database
-        Firebase: <Database className="h-4 w-4 text-yellow-600" />,
-        MySQL: <Database className="h-4 w-4 text-blue-600" />,
-        SQL: <Database className="h-4 w-4 text-blue-500" />,
+        Firebase: <SiFirebase className="h-4 w-4 text-yellow-600" />,
+        MySQL: <SiMysql className="h-4 w-4 text-blue-600" />,
+        SQL: <Database className="h-4 w-4 text-blue-500" />, // No official SQL icon in react-icons
 
         // Design
-        Figma: <Palette className="h-4 w-4 text-purple-500" />,
-        "UI/UX Design": <Layout className="h-4 w-4 text-pink-500" />,
-        "Responsive Design": <Columns className="h-4 w-4 text-teal-500" />,
-        Wireframing: <GanttChart className="h-4 w-4 text-gray-500" />,
-        Prototyping: <Layers className="h-4 w-4 text-indigo-500" />,
+        Figma: <SiFigma className="h-4 w-4 text-purple-500" />,
+        "UI/UX Design": <Palette className="h-4 w-4 text-pink-500" />,
+        "Responsive Design": <Layout className="h-4 w-4 text-teal-500" />,
+        Wireframing: <Palette className="h-4 w-4 text-gray-500" />,
+        Prototyping: <Layout className="h-4 w-4 text-indigo-500" />,
 
         // DevOps
-        Git: <GitBranch className="h-4 w-4 text-orange-600" />,
-        GitHub: <Github className="h-4 w-4 text-black" />,
-        "CI/CD": <Rocket className="h-4 w-4 text-blue-500" />,
-        Vercel: <ServerCog className="h-4 w-4 text-black" />,
-        Netlify: <Network className="h-4 w-4 text-teal-500" />,
+        Git: <SiGit className="h-4 w-4 text-orange-600" />,
+        GitHub: <SiGithub className="h-4 w-4 text-black dark:text-white" />,
+        "CI/CD": <Wrench className="h-4 w-4 text-blue-500" />,
+        Vercel: <SiVercel className="h-4 w-4 text-black dark:text-white" />,
+        Netlify: <SiNetlify className="h-4 w-4 text-teal-500" />,
 
         // Languages
-        Java: <Coffee className="h-4 w-4 text-red-600" />,
+        Java: <FaJava className="h-4 w-4 text-red-600" />,
     };
 
-    return iconMap[skill] || <MessageSquare className="h-4 w-4" />;
+    return iconMap[skill] || <Code className="h-4 w-4" />;
 };
 
+// Rest of the component remains the same...
 const skillsData: SkillCategory[] = [
     {
         name: "Frontend",
