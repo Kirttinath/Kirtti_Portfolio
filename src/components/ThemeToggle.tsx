@@ -1,6 +1,6 @@
 
 import { Moon, Sun } from "lucide-react";
-import { Button } from "react-bootstrap";
+import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ThemeProvider";
 import { useEffect, useState } from "react";
 
@@ -17,45 +17,15 @@ export function ThemeToggle() {
 
   return (
     <Button
-      variant="link"
+      variant="ghost"
+      size="icon"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       aria-label="Toggle theme"
-      style={{
-        borderRadius: '50%',
-        position: 'relative',
-        overflow: 'hidden',
-        transition: 'all 0.5s',
-        background: 'transparent',
-        padding: '10px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
+      className="rounded-full relative overflow-hidden transition-all duration-500 bg-gradient-to-r from-background to-background hover:from-primary/5 hover:to-primary/10"
     >
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        opacity: theme === 'dark' ? 0.2 : 0,
-        transition: 'opacity 0.5s',
-        background: 'linear-gradient(to right, rgba(155, 135, 245, 0.05), transparent)'
-      }}></div>
-      <Sun 
-        style={{
-          height: '1.2rem',
-          width: '1.2rem',
-          transform: theme === 'dark' ? 'rotate(-90deg) scale(0)' : 'rotate(0) scale(1)',
-          transition: 'all 0.3s'
-        }} 
-      />
-      <Moon 
-        style={{
-          position: 'absolute',
-          height: '1.2rem',
-          width: '1.2rem',
-          transform: theme === 'dark' ? 'rotate(0) scale(1)' : 'rotate(90deg) scale(0)',
-          transition: 'all 0.3s'
-        }} 
-      />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-background opacity-0 dark:opacity-20 transition-opacity duration-500"></div>
+      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
     </Button>
   );
 }
