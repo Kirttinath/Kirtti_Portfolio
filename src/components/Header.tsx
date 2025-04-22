@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
@@ -39,33 +38,34 @@ export default function Header() {
       <div className="container flex items-center justify-between">
         <a 
           href="#home" 
-          className="text-3xl font-bold relative group perspective-1000"
+          className="text-5xl font-bold relative group perspective-1000 cursor-pointer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           <span className={cn(
-            "inline-block transition-all duration-700 transform",
+            "inline-block transition-all duration-700 transform origin-center",
             isHovered ? "rotate-y-180 scale-110" : "",
-            "bg-gradient-to-r from-primary/80 via-[#9b87f5] to-[#7E69AB] bg-clip-text text-transparent"
+            "font-serif font-extrabold tracking-wider",
+            "bg-gradient-to-r from-[#6E59A5] via-[#9b87f5] to-[#7E69AB] bg-clip-text text-transparent"
           )}>
             K
           </span>
           <div className={cn(
             "absolute inset-0 transition-all duration-500",
             isHovered ? "opacity-100" : "opacity-0",
+            "font-serif font-extrabold tracking-wider",
             "bg-gradient-to-r from-[#D6BCFA] via-[#E5DEFF] to-[#D3E4FD]",
             "bg-clip-text text-transparent animate-pulse"
           )}>
             K
           </div>
           <span className={cn(
-            "absolute bottom-0 left-0 w-full h-0.5 transform origin-left transition-all duration-500",
-            "bg-gradient-to-r from-primary via-[#9b87f5] to-[#7E69AB]",
+            "absolute bottom-0 left-0 w-full h-1 transform origin-left transition-all duration-500",
+            "bg-gradient-to-r from-[#6E59A5] via-[#9b87f5] to-[#7E69AB]",
             isHovered ? "scale-x-100" : "scale-x-0"
           )}></span>
         </a>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-6">
             {navItems.map((item) => (
@@ -82,7 +82,6 @@ export default function Header() {
           <ThemeToggle />
         </nav>
 
-        {/* Mobile Menu Button */}
         <div className="flex items-center gap-4 md:hidden">
           <ThemeToggle />
           <button 
@@ -99,7 +98,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <nav className="md:hidden bg-background/95 backdrop-blur-md p-4 shadow-lg">
           <ul className="flex flex-col gap-4">
