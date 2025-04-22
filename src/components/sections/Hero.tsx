@@ -140,7 +140,7 @@ export default function Hero() {
                 <span className="relative z-10">Get In Touch</span>
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-l-none rounded-r-full border-gradient-primary group transition-all duration-300">
+            <Button asChild variant="outline" size="lg" className="rounded-full group transition-all duration-300">
               <a href="#projects" className="relative overflow-hidden">
                 <span className="absolute inset-0 bg-gradient-to-r from-[#D6BCFA]/10 to-[#D3E4FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                 <span className="relative z-10">View My Work</span>
