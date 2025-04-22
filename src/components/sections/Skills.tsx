@@ -1,6 +1,7 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Code, Database, Layout, Palette, Server, Wrench } from "lucide-react";
+import { Code, Database, Layout, Palette, Wrench } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 interface SkillCategory {

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
@@ -7,6 +6,7 @@ import { Menu, X } from "lucide-react";
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,8 +36,22 @@ export default function Header() {
       )}
     >
       <div className="container flex items-center justify-between">
-        <a href="#home" className="text-xl font-bold">
-          Portfolio
+        <a 
+          href="#home" 
+          className="text-2xl font-bold relative group"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <span className={cn(
+            "inline-block transition-transform duration-500",
+            isHovered ? "rotate-360 scale-110" : ""
+          )}>
+            K
+          </span>
+          <span className={cn(
+            "absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300",
+            isHovered ? "scale-x-100" : "scale-x-0"
+          )}></span>
         </a>
 
         {/* Desktop Navigation */}
