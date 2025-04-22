@@ -1,8 +1,6 @@
-
-import { Button } from "react-bootstrap";
+import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
 import { useTheme } from "@/components/ThemeProvider";
 
 export default function Hero() {
@@ -79,7 +77,7 @@ export default function Hero() {
             
             ctx.strokeStyle = gradient;
             ctx.lineWidth = Math.max(1.5 - distance / maxDistance, 0.5);
-            ctx.globalAlpha = 0.5;
+            ctx.globalAlpha = 0.5; // Set line opacity to 0.5
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -100,127 +98,62 @@ export default function Hero() {
   }, [theme]);
   
   return (
-    <section 
-      id="home" 
-      className="container-fluid"
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        paddingTop: '80px',
-        position: 'relative',
-        overflow: 'hidden',
-        background: 'linear-gradient(to bottom right, rgba(255,255,255,0.95), rgba(255,255,255,0.9))'
-      }}
-    >
+    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90">
       <canvas 
         ref={canvasRef} 
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          pointerEvents: 'none',
-          zIndex: 0
-        }}
+        className="absolute inset-0 w-full h-full pointer-events-none z-0"
         aria-hidden="true"
       />
       
-      <div className="container position-relative" style={{ zIndex: 1 }}>
-        <motion.div 
-          className="text-center mx-auto"
-          style={{ maxWidth: '48rem' }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.h1 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+      <div className="container relative z-10">
+        <div className="max-w-3xl mx-auto text-center space-y-8">
+          <h1 
+            className={`opacity-0 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100' : ''}`}
           >
-            <span style={{ 
-              display: 'block',
-              fontSize: '1.25rem',
-              color: 'var(--muted-text)',
-              marginBottom: '1rem'
-            }}>
+            <span className="text-xl md:text-2xl block text-muted-foreground mb-4">
               Hello, I'm
             </span>
-            <span className="text-gradient">
+            <span className="gradient-text">
               Kirttinath Ojha
             </span>
-          </motion.h1>
+          </h1>
           
-          <motion.p 
-            className="mb-4"
-            style={{
-              fontSize: '1.25rem',
-              color: 'var(--muted-text)'
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+          <p 
+            className={`text-xl md:text-2xl text-muted-foreground opacity-0 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : ''}`}
           >
             Frontend Developer and UI/UX Designer
-          </motion.p>
+          </p>
           
-          <motion.p 
-            className="mb-5"
-            style={{ fontSize: '1.125rem' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
+          <p 
+            className={`opacity-0 transition-all duration-1000 delay-700 text-lg ${isVisible ? 'opacity-100' : ''}`}
           >
             I build accessible, user-friendly applications with modern technologies,
             focusing on clean code and engaging user experiences.
-          </motion.p>
+          </p>
           
-          <motion.div 
-            className="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3 mt-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9 }}
+          <div 
+            className={`flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 opacity-0 transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100' : ''}`}
           >
-            <a href="#contact" className="btn btn-gradient">
-              Get In Touch
-            </a>
-            <a href="#projects" className="btn btn-outline-primary">
-              View My Work
-            </a>
-          </motion.div>
-        </motion.div>
+            <Button asChild size="lg" className="rounded-full relative overflow-hidden group">
+              <a href="#contact">
+                <span className="absolute inset-0 bg-gradient-to-r from-primary/80 via-[#9b87f5] to-[#7E69AB] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                <span className="relative z-10">Get In Touch</span>
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="rounded-l-none rounded-r-full border-gradient-primary group transition-all duration-300">
+              <a href="#projects" className="relative overflow-hidden">
+                <span className="absolute inset-0 bg-gradient-to-r from-[#D6BCFA]/10 to-[#D3E4FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                <span className="relative z-10">View My Work</span>
+              </a>
+            </Button>
+          </div>
+        </div>
         
-        <motion.div 
-          className="position-absolute"
-          style={{
-            bottom: '3rem',
-            left: '50%',
-            transform: 'translateX(-50%)'
-          }}
-          animate={{ 
-            y: [0, 10, 0] 
-          }}
-          transition={{ 
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <a 
-            href="#education" 
-            aria-label="Scroll down"
-            className="d-flex justify-content-center align-items-center"
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(255,255,255,0.1)'
-            }}
-          >
-            <ArrowDown style={{ width: '24px', height: '24px', color: 'var(--muted-text)' }} />
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <a href="#education" aria-label="Scroll down" className="card-hover rounded-full p-2 block">
+            <ArrowDown className="h-6 w-6 text-muted-foreground" />
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

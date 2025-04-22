@@ -1,11 +1,11 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useState, FormEvent } from "react";
-import { AtSign, MapPin, Send, Phone } from "lucide-react";
-import { Github, Linkedin } from "lucide-react";
+import { AtSign, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
 
@@ -71,24 +71,27 @@ export default function Contact() {
     {
       icon: <AtSign className="h-5 w-5" />,
       label: "Email",
-      value: "kirttinathojha000@gmail.com",
-      href: "mailto:kirttinathojha000@gmail.com",
+      value: "john.doe@example.com",
+      href: "mailto:john.doe@example.com",
+    },
+    {
+      icon: <Phone className="h-5 w-5" />,
+      label: "Phone",
+      value: "+1 (555) 123-4567",
+      href: "tel:+15551234567",
     },
     {
       icon: <MapPin className="h-5 w-5" />,
       label: "Location",
-      value: "Bhubaneswar, Odisha",
+      value: "San Francisco, CA",
       href: null,
     },
   ];
 
   return (
     <section id="contact" className="bg-muted/50">
-      
       <div className="container" ref={ref}>
         <div className="flex flex-col gap-12">
-          
-
           <div className="space-y-4 text-center">
             <h2>Contact Me</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -97,8 +100,6 @@ export default function Contact() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            
-
             <Card 
               className={cn(
                 "transition-all duration-700 transform",
@@ -196,7 +197,6 @@ export default function Contact() {
                 inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-20"
               )}
             >
-              
               <Card>
                 <CardHeader>
                   <CardTitle>Contact Information</CardTitle>
@@ -230,33 +230,61 @@ export default function Contact() {
                 </CardContent>
               </Card>
 
-              
               <Card>
                 <CardHeader>
                   <CardTitle>Connect with Me</CardTitle>
                   <CardDescription>
-                    Find me on professional networks.
+                    Find me on social media and professional networks.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-4">
                     <a 
-                      href="https://github.com/kirttinathojha" 
+                      href="https://github.com" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="h-12 w-12 bg-card rounded-full border flex items-center justify-center transition-colors hover:bg-muted"
                       aria-label="GitHub"
                     >
-                      <Github className="h-5 w-5" />
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.477 2 2 6.477 2 12C2 16.418 4.865 20.166 8.839 21.489C9.339 21.574 9.5 21.292 9.5 21.052C9.5 20.825 9.492 19.985 9.492 19.139C7 19.607 6.35 18.535 6.15 17.975C6.037 17.691 5.55 16.783 5.125 16.557C4.775 16.375 4.275 15.908 5.112 15.895C5.9 15.882 6.462 16.627 6.65 16.923C7.55 18.437 8.937 18.012 9.537 17.772C9.623 17.108 9.878 16.665 10.158 16.413C7.975 16.16 5.7 15.313 5.7 11.477C5.7 10.387 6.087 9.488 6.675 8.787C6.575 8.562 6.225 7.477 6.775 6.112C6.775 6.112 7.612 5.874 9.505 7.162C10.312 6.962 11.163 6.863 12.012 6.863C12.85 6.863 13.7 6.963 14.512 7.162C16.387 5.862 17.225 6.113 17.225 6.113C17.775 7.477 17.425 8.563 17.337 8.788C17.925 9.488 18.312 10.375 18.312 11.477C18.312 15.325 16.025 16.163 13.825 16.413C14.175 16.725 14.475 17.325 14.475 18.263C14.475 19.6 14.462 20.738 14.462 21.052C14.462 21.294 14.625 21.574 15.125 21.487C17.105 20.818 18.8 19.52 19.979 17.821C21.158 16.122 21.755 14.08 21.75 12C21.75 6.477 17.272 2 12 2Z" fill="currentColor"/>
+                      </svg>
                     </a>
                     <a 
-                      href="https://linkedin.com/in/kirttinathojha" 
+                      href="https://linkedin.com" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="h-12 w-12 bg-card rounded-full border flex items-center justify-center transition-colors hover:bg-muted"
                       aria-label="LinkedIn"
                     >
-                      <Linkedin className="h-5 w-5" />
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.5 8C7.32843 8 8 7.32843 8 6.5C8 5.67157 7.32843 5 6.5 5C5.67157 5 5 5.67157 5 6.5C5 7.32843 5.67157 8 6.5 8Z" fill="currentColor"/>
+                        <path d="M5 10C5 9.44772 5.44772 9 6 9H7C7.55228 9 8 9.44771 8 10V18C8 18.5523 7.55228 19 7 19H6C5.44772 19 5 18.5523 5 18V10Z" fill="currentColor"/>
+                        <path d="M11 19H12C12.5523 19 13 18.5523 13 18V13.5C13 12 15 11 16 12.5V10C16 9.44771 16.4477 9 17 9H18C18.5523 9 19 9.44772 19 10V18C19 18.5523 18.5523 19 18 19H17C16.4477 19 16 18.5523 16 18V16.5C16 15 13 14 13 16.5V18C13 18.5523 12.5523 19 12 19H11Z" fill="currentColor"/>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z" fill="currentColor"/>
+                      </svg>
+                    </a>
+                    <a 
+                      href="https://twitter.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="h-12 w-12 bg-card rounded-full border flex items-center justify-center transition-colors hover:bg-muted"
+                      aria-label="Twitter"
+                    >
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.7128 7.84851C19.7245 8.01659 19.7245 8.18466 19.7245 8.35477C19.7245 13.8513 15.8553 20.1209 8.29142 20.1209C5.96509 20.1209 3.81473 19.4439 2 18.2773C2.32996 18.3147 2.64773 18.3271 2.98975 18.3271C4.90607 18.3271 6.67043 17.6749 8.07831 16.5706C6.27563 16.5332 4.76155 15.3418 4.24323 13.717C4.5 13.7543 4.75481 13.7792 5.02168 13.7792C5.3871 13.7792 5.75449 13.7294 6.09651 13.642C4.2177 13.2603 2.81179 11.6107 2.81179 9.63323V9.58345C3.35649 9.88528 3.98945 10.0733 4.65878 10.0982C3.55235 9.35871 2.83627 8.10756 2.83627 6.70774C2.83627 5.94348 3.0441 5.2415 3.4095 4.62633C5.41509 7.08419 8.44765 8.67903 11.8477 8.85423C11.7833 8.55241 11.7438 8.23822 11.7438 7.92403C11.7438 5.68951 13.5465 3.87923 15.8671 3.87923C17.0793 3.87923 18.1616 4.38994 18.9323 5.21848C19.883 5.04417 20.796 4.70536 21.5998 4.24253C21.2997 5.18167 20.6625 5.94348 19.8328 6.42073C20.6388 6.33359 21.4167 6.12269 22.1327 5.82086C21.5998 6.59502 20.9191 7.28467 20.1486 7.84851H19.7128Z" fill="currentColor"/>
+                      </svg>
+                    </a>
+                    <a 
+                      href="https://dribbble.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="h-12 w-12 bg-card rounded-full border flex items-center justify-center transition-colors hover:bg-muted"
+                      aria-label="Dribbble"
+                    >
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.42 8.82C17.94 10.92 18.53 13.33 18.19 15.74C17.95 15.67 15.26 15.04 12.56 15.45C12.51 15.34 12.47 15.24 12.42 15.12C12.24 14.67 12.03 14.21 11.81 13.77C14.77 12.69 16.11 10.5 16.42 8.82ZM15.72 7.47C14.58 6.43 13.09 5.81 11.46 5.81C10.87 5.81 10.3 5.9 9.75 6.07C9.99 6.41 11.11 8.05 12.21 10.04C14.47 9.05 15.64 7.58 15.72 7.47ZM8.54 6.79C8.3 7.15 7.18 8.97 5.96 10.52C6.29 11.16 7.32 12.9 9.37 13.29C9.55 13.64 9.72 13.99 9.88 14.33C9.59 14.41 9.29 14.5 9 14.59C6.87 15.24 5.17 14.88 4.3 14.68C4.3 14.68 4.3 14.68 4.3 14.67C4.3 13.06 4.86 11.57 5.81 10.42C6.56 9.5 7.5 8.75 8.54 8.25V6.79ZM4.42 15.86C4.88 16.06 7.02 16.95 9.33 16.01C9.56 15.92 9.78 15.83 10 15.73C9.88 15.49 9.76 15.24 9.64 15C7.35 14.47 5.7 13.17 4.9 12.52C4.59 13.56 4.42 14.69 4.42 15.86ZM11.46 18.19C10.81 18.19 10.19 18.09 9.61 17.91C9.88 16.5 10.38 15.08 11.03 13.71C11.23 13.83 11.43 13.96 11.63 14.09C13.09 15.06 14.55 15.67 15.21 15.96C14.39 17.34 13.02 18.19 11.46 18.19ZM16.3 15.03C15.52 14.69 14.22 14.17 12.91 13.32C13.08 13.7 13.26 14.08 13.41 14.47C13.47 14.6 13.53 14.74 13.59 14.88C14.42 14.75 15.35 14.77 16.33 14.9C16.32 14.95 16.31 14.99 16.3 15.03Z" fill="currentColor"/>
+                      </svg>
                     </a>
                   </div>
                 </CardContent>
