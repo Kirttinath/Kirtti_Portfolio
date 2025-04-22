@@ -38,24 +38,26 @@ export default function Header() {
       <div className="container flex items-center justify-between">
         <a 
           href="#home" 
-          className="text-5xl font-bold relative group perspective-1000 cursor-pointer"
+          className="text-4xl font-bold relative group perspective-1000 cursor-pointer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           <span className={cn(
             "inline-block transition-all duration-700 transform origin-center",
             isHovered ? "rotate-y-180 scale-110" : "",
-            "font-serif font-extrabold tracking-wider",
-            "bg-gradient-to-r from-[#6E59A5] via-[#9b87f5] to-[#7E69AB] bg-clip-text text-transparent"
+            "font-serif font-extrabold tracking-wider italic",
+            "bg-gradient-to-r from-[#6E59A5] via-[#9b87f5] to-[#7E69AB] bg-clip-text text-transparent",
+            "font-['Playfair_Display'] text-[2.5rem] leading-none"
           )}>
             K
           </span>
           <div className={cn(
             "absolute inset-0 transition-all duration-500",
             isHovered ? "opacity-100" : "opacity-0",
-            "font-serif font-extrabold tracking-wider",
+            "font-serif font-extrabold tracking-wider italic",
             "bg-gradient-to-r from-[#D6BCFA] via-[#E5DEFF] to-[#D3E4FD]",
-            "bg-clip-text text-transparent animate-pulse"
+            "bg-clip-text text-transparent animate-pulse",
+            "font-['Playfair_Display'] text-[2.5rem] leading-none"
           )}>
             K
           </div>
