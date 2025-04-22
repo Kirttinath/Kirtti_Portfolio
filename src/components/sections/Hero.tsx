@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
@@ -78,7 +77,7 @@ export default function Hero() {
             
             ctx.strokeStyle = gradient;
             ctx.lineWidth = Math.max(1.5 - distance / maxDistance, 0.5);
-            ctx.globalAlpha = 0.5;
+            ctx.globalAlpha = 0.5; // Set line opacity to 0.5
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -159,4 +158,3 @@ export default function Hero() {
     </section>
   );
 }
-
